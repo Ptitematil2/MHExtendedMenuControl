@@ -8,31 +8,28 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = "MHExtendedMenuControl"
-  s.version          = "0.1.0"
-  s.summary          = "A short description of MHExtendedMenuControl."
-  s.description      = <<-DESC
-                       An optional longer description of MHExtendedMenuControl
+s.name             = "MHExtendedMenuControl"
+s.version          = "0.1.0"
+s.summary          = "MHExtendedMenuControl Library"
+s.description      = <<-DESC
+MHExtendedMenuControl allows you to create a bouncing menu with multiple buttons
+DESC
+s.homepage         = "https://github.com/Ptitematil2/MHExtendedMenuControl"
+s.license          = 'MIT'
+s.author           = { "Mathilde Henriot" => "me@mathilde-henriot.com" }
+s.source           = { :git => "https://github.com/Ptitematil2/MHExtendedMenuControl.git", :tag => "0.1.0" }
+s.social_media_url = 'https://twitter.com/Ptitematil2'
 
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
-                       DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/MHExtendedMenuControl"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
-  s.license          = 'MIT'
-  s.author           = { "Mathilde Henriot" => "me@mathilde-henriot.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/MHExtendedMenuControl.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+s.platform     = :ios, '7.0'
+s.requires_arc = true
 
-  s.platform     = :ios, '7.0'
-  s.requires_arc = true
+s.source_files = 'Pod/Classes/**/*'
+s.resource_bundles = {
+'MHExtendedMenuControl' => ['Pod/Assets/*.png']
+}
 
-  s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'MHExtendedMenuControl' => ['Pod/Assets/*.png']
-  }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+# s.public_header_files = 'Pod/Classes/**/*.h'
+# s.frameworks = 'UIKit', 'MapKit'
+# s.dependency 'AFNetworking', '~> 2.3'
 end
+
