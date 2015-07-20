@@ -146,6 +146,8 @@
         [self bringSubviewToFront:tapGesture.view];
         
         [self.delegate didSelectButton:(int)tapGesture.view.tag];
+    } else {
+        [self.delegate didTapMenu];
     }
 }
 

@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, MHExtendedMenuAnimation) {
 @protocol MHExtendedMenuControlDelegate
 
 - (void)didSelectButton:(int)buttonPosition;
+- (void)didTapMenu;
 
 @end
 
