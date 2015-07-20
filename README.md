@@ -11,6 +11,14 @@ MHExtendedMenuControl allows you to create a bouncing menu with multiple buttons
 
 0.1.0
 
+## Example
+
+Run 
+```ruby
+pod install 
+```
+before run the example.
+
 ## Installation
 
 MHExtendedMenuControl is available through [CocoaPods](http://cocoapods.org). To install
