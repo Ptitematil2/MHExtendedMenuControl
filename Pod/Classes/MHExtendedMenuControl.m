@@ -39,7 +39,7 @@
 
 - (void)setDelegate:(id <MHExtendedMenuControlDelegate>)aDelegate {
     if (self.delegate != aDelegate) {
-        self.delegate = aDelegate;
+        self->_delegate = aDelegate;
         
         delegateRespondsTo.willOpenMenu = [self.delegate respondsToSelector:@selector(MHExtendedMenuControlWillOpenMenu:)];
         delegateRespondsTo.didOpenMenu = [self.delegate respondsToSelector:@selector(MHExtendedMenuControlDidOpenMenu:)];
