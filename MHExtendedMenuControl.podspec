@@ -20,7 +20,7 @@ s.author           = { "Mathilde Henriot" => "me@mathilde-henriot.com" }
 s.source           = { :git => "https://github.com/Ptitematil2/MHExtendedMenuControl.git", :tag => "0.2.0" }
 s.social_media_url = 'https://twitter.com/Ptitematil2'
 
-s.platform     = :ios, '8.0'
+s.platform     = :ios, '7.0'
 s.requires_arc = true
 
 s.source_files = 'Pod/Classes/**/*'
