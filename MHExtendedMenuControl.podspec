@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
 s.name             = "MHExtendedMenuControl"
-s.version          = "0.2.1"
+s.version          = "0.2.2"
 s.summary          = "MHExtendedMenuControl Library"
 s.description      = <<-DESC
 MHExtendedMenuControl allows you to create a bouncing menu with multiple buttons
@@ -17,7 +17,7 @@ DESC
 s.homepage         = "https://github.com/Ptitematil2/MHExtendedMenuControl"
 s.license          = 'MIT'
 s.author           = { "Mathilde Henriot" => "me@mathilde-henriot.com" }
-s.source           = { :git => "https://github.com/Ptitematil2/MHExtendedMenuControl.git", :tag => "0.2.1" }
+s.source           = { :git => "https://github.com/Ptitematil2/MHExtendedMenuControl.git", :tag => "0.2.2" }
 s.social_media_url = 'https://twitter.com/Ptitematil2'
 
 s.platform     = :ios, '7.0'

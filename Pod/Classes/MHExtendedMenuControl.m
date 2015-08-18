@@ -69,7 +69,7 @@
 
 - (void)setSelectedButton:(int)buttonIndex {
     UIButton *button = buttonsArray[buttonIndex];
-    [self bringSubviewToFront:button];
+    [channelScrollView bringSubviewToFront:button];
     button.alpha = 1;
 }
 
