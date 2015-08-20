@@ -9,7 +9,7 @@
 #import "MHExtendedMenuControl.h"
 
 #define DegreesToRadians(x) ((x) * M_PI / 180.0)
-#define Animation_Duration 0.4
+#define Animation_Duration 0.3
 
 @interface MHExtendedMenuControl () <UIScrollViewDelegate>
 
@@ -188,7 +188,7 @@
             if (delegateRespondsTo.willOpenMenu)
                 [self.delegate MHExtendedMenuControlWillOpenMenu:self];
             
-            [UIView animateWithDuration:Animation_Duration
+            [UIView animateWithDuration:Animation_Duration delay:0 options:UIViewAnimationOptionCurveEaseIn
                              animations:^{
                                  switch (self.menuAnimation) {
                                      case MHExtendedMenuAnimationTop:
@@ -265,7 +265,7 @@
     if (delegateRespondsTo.willCloseMenu)
         [self.delegate MHExtendedMenuControlWillCloseMenu:self];
     
-    [UIView animateWithDuration:1
+    [UIView animateWithDuration:Animation_Duration
                      animations:^{
                          for (UIView *button in buttonsArray) {
                              if ([buttonsArray indexOfObject:button] != selectedButton) {
