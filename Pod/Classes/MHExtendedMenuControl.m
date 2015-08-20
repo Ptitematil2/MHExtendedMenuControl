@@ -274,7 +274,7 @@
                              
                              button.frame = ((UIView *)buttonsArray[0]).frame;
                          }
-
+                         
                      }
                      completion:^(BOOL finished){
                          if (delegateRespondsTo.didCloseMenu)
@@ -300,12 +300,31 @@
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    //Make sure navbar stay at the top
-    CGRect frame = mainItem.frame;
-    frame.origin.x = scrollView.contentOffset.x;
-    mainItem.frame = frame;
-    
-    [self bringSubviewToFront:mainItem];
+    if (self.menuAnimation == MHExtendedMenuAnimationRight) {
+        //Make sure navbar stay at the top
+        CGRect frame = mainItem.frame;
+        frame.origin.x = scrollView.contentOffset.x;
+        mainItem.frame = frame;
+        
+        [self bringSubviewToFront:mainItem];
+        
+        for (UIView *view in buttonsArray) {
+            if (view != mainItem) {
+                CGRect frame = view.frame;
+                CGFloat xPosition = frame.origin.x-scrollView.contentOffset.x;
+                if (xPosition < btnSize.width) {
+                    view.alpha = xPosition/btnSize.width;
+                } else if (xPosition > CGRectGetMaxX(self.frame)-btnSize.width) {
+                    [UIView animateWithDuration:0.3 animations:^{
+                        view.alpha = 0;
+                    }];
+                } else
+                    [UIView animateWithDuration:0.3 animations:^{
+                        view.alpha = 1;
+                    }];
+            }
+        }
+    }
 }
 
 @end
