@@ -68,9 +68,11 @@
 }
 
 - (void)setSelectedButton:(int)buttonIndex {
-    UIButton *button = buttonsArray[buttonIndex];
-    [channelScrollView bringSubviewToFront:button];
-    button.alpha = 1;
+    if ([buttonsArray count] > buttonIndex) {
+        UIButton *button = buttonsArray[buttonIndex];
+        [channelScrollView bringSubviewToFront:button];
+        button.alpha = 1;
+    }
 }
 
 - (void)loadMenuWith:(NSInteger)numberOfButtons buttonsWithImages:(NSArray *)images {
