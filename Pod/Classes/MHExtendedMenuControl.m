@@ -144,7 +144,7 @@
         UIView *buttonView = [[UIView alloc] initWithFrame:initialFrame];
         buttonView.layer.cornerRadius = btnSize.width/2;
         
-        if (i == 0) {
+        if (i == 0 && nbrOfButtons > 1) {
             buttonView.layer.shadowColor = [[UIColor blackColor] CGColor];
             buttonView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
             buttonView.layer.shadowRadius = 3.0f;
@@ -288,10 +288,12 @@
                                  button.layer.shadowColor = [[UIColor clearColor] CGColor];
                                  button.alpha = 0;
                              } else {
-                                 button.layer.shadowColor = [[UIColor blackColor] CGColor];
-                                 button.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-                                 button.layer.shadowRadius = 3.0f;
-                                 button.layer.shadowOpacity = 0.8f;
+                                 if (nbrOfButtons > 1) {
+                                     button.layer.shadowColor = [[UIColor blackColor] CGColor];
+                                     button.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+                                     button.layer.shadowRadius = 3.0f;
+                                     button.layer.shadowOpacity = 0.8f;
+                                 }
                              }
                              
                              button.frame = ((UIView *)buttonsArray[0]).frame;
