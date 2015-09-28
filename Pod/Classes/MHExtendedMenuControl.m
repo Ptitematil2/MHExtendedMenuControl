@@ -114,6 +114,7 @@
     channelScrollView.delegate = self;
     channelScrollView.showsHorizontalScrollIndicator = NO;
     channelScrollView.showsVerticalScrollIndicator = NO;
+    channelScrollView.clipsToBounds = NO;
     [self addSubview:channelScrollView];
     
     CGRect initialFrame;
@@ -142,16 +143,23 @@
         
         UIView *buttonView = [[UIView alloc] initWithFrame:initialFrame];
         buttonView.layer.cornerRadius = btnSize.width/2;
-        buttonView.layer.shadowColor = [[UIColor blackColor] CGColor];
-        buttonView.layer.shadowOffset = CGSizeMake(1, 2);
-        buttonView.layer.shadowOpacity = 0.5;
+        
+        if (i == 0) {
+            buttonView.layer.shadowColor = [[UIColor blackColor] CGColor];
+            buttonView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+            buttonView.layer.shadowRadius = 3.0f;
+            buttonView.layer.shadowOpacity = 0.8f;
+        }
+        
         buttonView.tag = i;
         buttonView.userInteractionEnabled = YES;
-        buttonView.clipsToBounds = YES;
+        buttonView.clipsToBounds = NO;
         
         UIImageView *buttonImageView = [[UIImageView alloc] initWithFrame:buttonView.bounds];
         buttonImageView.image = imagesArray[i];
         buttonImageView.contentMode = UIViewContentModeScaleAspectFill;
+        buttonImageView.layer.cornerRadius = btnSize.width/2;
+        buttonImageView.clipsToBounds = YES;
         [buttonView addSubview:buttonImageView];
         
         UILongPressGestureRecognizer *longGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(openMenu:)];
@@ -199,6 +207,7 @@
                                          
                                          for (UIView *button in buttonsArray) {
                                              button.alpha = 1;
+                                             button.layer.shadowColor = [[UIColor clearColor] CGColor];
                                              button.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y-(btnSize.width-20)*[buttonsArray indexOfObject:button], button.frame.size.width, button.frame.size.height);
                                          }
                                          
@@ -207,6 +216,7 @@
                                          
                                          for (UIView *button in buttonsArray) {
                                              button.alpha = 1;
+                                             button.layer.shadowColor = [[UIColor clearColor] CGColor];
                                              button.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y+(btnSize.width+20)*[buttonsArray indexOfObject:button], button.frame.size.width, button.frame.size.height);
                                          }
                                          
@@ -215,6 +225,7 @@
                                          
                                          for (UIView *button in buttonsArray) {
                                              button.alpha = 1;
+                                             button.layer.shadowColor = [[UIColor clearColor] CGColor];
                                              button.frame = CGRectMake(button.frame.origin.x-(btnSize.width-20)*[buttonsArray indexOfObject:button], button.frame.origin.y, button.frame.size.width, button.frame.size.height);
                                          }
                                          
@@ -223,6 +234,7 @@
                                          
                                          for (UIView *button in buttonsArray) {
                                              button.alpha = 1;
+                                             button.layer.shadowColor = [[UIColor clearColor] CGColor];
                                              button.frame = CGRectMake(button.frame.origin.x+(btnSize.width+20)*[buttonsArray indexOfObject:button], button.frame.origin.y, button.frame.size.width, button.frame.size.height);
                                          }
                                          
@@ -273,7 +285,13 @@
                      animations:^{
                          for (UIView *button in buttonsArray) {
                              if ([buttonsArray indexOfObject:button] != selectedButton) {
+                                 button.layer.shadowColor = [[UIColor clearColor] CGColor];
                                  button.alpha = 0;
+                             } else {
+                                 button.layer.shadowColor = [[UIColor blackColor] CGColor];
+                                 button.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+                                 button.layer.shadowRadius = 3.0f;
+                                 button.layer.shadowOpacity = 0.8f;
                              }
                              
                              button.frame = ((UIView *)buttonsArray[0]).frame;
@@ -293,6 +311,12 @@
 
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
+    [UIView animateWithDuration:0.3 animations:^{
+        mainItem.layer.shadowRadius = 5.0f;
+    } completion:^(BOOL finished) {
+        mainItem.layer.shadowRadius = 3.0f;
+    }];
+    
     return YES;
 }
 
