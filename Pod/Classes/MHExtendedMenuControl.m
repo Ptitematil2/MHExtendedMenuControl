@@ -72,6 +72,7 @@
         UIButton *button = buttonsArray[buttonIndex];
         [channelScrollView bringSubviewToFront:button];
         button.alpha = 1;
+        selectedButton = buttonIndex;
         
         [self closeMenu];
     }
