@@ -60,7 +60,7 @@
         
         self.menuAnimation = animation;
         isMenuOpen = NO;
-        
+        channelScrollView.scrollEnabled = NO;
         self.delegate = delegate;
     }
     
@@ -116,6 +116,7 @@
     channelScrollView.showsHorizontalScrollIndicator = NO;
     channelScrollView.showsVerticalScrollIndicator = NO;
     channelScrollView.clipsToBounds = NO;
+    channelScrollView.scrollEnabled = NO;
     [self addSubview:channelScrollView];
     
     CGRect initialFrame;
@@ -245,6 +246,8 @@
                                  }
                              }
                              completion:^(BOOL finished){
+                                 channelScrollView.scrollEnabled = YES;
+                                 
                                  if (delegateRespondsTo.didOpenMenu)
                                      [self.delegate MHExtendedMenuControlDidOpenMenu:self];
                              }
@@ -304,6 +307,7 @@
                      completion:^(BOOL finished){
                          if (delegateRespondsTo.didCloseMenu)
                              [self.delegate MHExtendedMenuControlDidCloseMenu:self];
+                            channelScrollView.scrollEnabled = NO;
                          
                          isMenuOpen = NO;
                      }
