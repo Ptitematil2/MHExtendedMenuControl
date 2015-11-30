@@ -130,11 +130,11 @@
             channelScrollView.contentSize = CGSizeMake(btnSize.width*nbrOfButtons+20*(nbrOfButtons-1), btnSize.height);
             break;
         case MHExtendedMenuAnimationTop:
-            initialFrame = CGRectMake(0, 0, btnSize.width, btnSize.height);
+            initialFrame = CGRectMake(0, self.frame.size.height-btnSize.height, btnSize.width, btnSize.height);
             channelScrollView.contentSize = CGSizeMake(btnSize.width, btnSize.height*nbrOfButtons+20*(nbrOfButtons-1));
             break;
         case MHExtendedMenuAnimationBottom:
-            initialFrame = CGRectMake(0, self.frame.size.height-btnSize.height, btnSize.width, btnSize.height);
+            initialFrame = CGRectMake(0, 0, btnSize.width, btnSize.height);
             channelScrollView.contentSize = CGSizeMake(btnSize.width, btnSize.height*nbrOfButtons+20*(nbrOfButtons-1));
             break;
         default:
