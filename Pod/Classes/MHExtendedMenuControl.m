@@ -115,7 +115,7 @@
     channelScrollView.delegate = self;
     channelScrollView.showsHorizontalScrollIndicator = NO;
     channelScrollView.showsVerticalScrollIndicator = NO;
-    channelScrollView.clipsToBounds = NO;
+    channelScrollView.clipsToBounds = YES;
     channelScrollView.scrollEnabled = NO;
     [self addSubview:channelScrollView];
     
@@ -309,7 +309,7 @@
                      completion:^(BOOL finished){
                          if (delegateRespondsTo.didCloseMenu)
                              [self.delegate MHExtendedMenuControlDidCloseMenu:self];
-                            channelScrollView.scrollEnabled = NO;
+                         channelScrollView.scrollEnabled = NO;
                          
                          isMenuOpen = NO;
                      }
@@ -338,7 +338,6 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (self.menuAnimation == MHExtendedMenuAnimationRight) {
-        //Make sure navbar stay at the top
         CGRect frame = mainItem.frame;
         frame.origin.x = scrollView.contentOffset.x;
         mainItem.frame = frame;
@@ -352,6 +351,29 @@
                 if (xPosition < btnSize.width) {
                     view.alpha = xPosition/btnSize.width;
                 } else if (xPosition > CGRectGetMaxX(self.frame)-btnSize.width) {
+                    [UIView animateWithDuration:0.3 animations:^{
+                        view.alpha = 0;
+                    }];
+                } else
+                    [UIView animateWithDuration:0.3 animations:^{
+                        view.alpha = 1;
+                    }];
+            }
+        }
+    } else if (self.menuAnimation == MHExtendedMenuAnimationBottom) {
+        CGRect frame = mainItem.frame;
+        frame.origin.y = scrollView.contentOffset.y;
+        mainItem.frame = frame;
+        
+        [self bringSubviewToFront:mainItem];
+        
+        for (UIView *view in buttonsArray) {
+            if (view != mainItem) {
+                CGRect frame = view.frame;
+                CGFloat yPosition = frame.origin.y-scrollView.contentOffset.y;
+                if (yPosition < btnSize.height) {
+                    view.alpha = yPosition/btnSize.height;
+                } else if (yPosition > CGRectGetMaxY(self.frame)-btnSize.height) {
                     [UIView animateWithDuration:0.3 animations:^{
                         view.alpha = 0;
                     }];
