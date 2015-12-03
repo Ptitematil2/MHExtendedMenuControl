@@ -161,6 +161,8 @@
         buttonImageView.image = imagesArray[i];
         buttonImageView.contentMode = UIViewContentModeScaleAspectFill;
         buttonImageView.layer.cornerRadius = btnSize.width/2;
+        buttonImageView.layer.borderWidth = 2.f;
+        buttonImageView.layer.borderColor = [UIColor whiteColor].CGColor;
         buttonImageView.clipsToBounds = YES;
         [buttonView addSubview:buttonImageView];
         
