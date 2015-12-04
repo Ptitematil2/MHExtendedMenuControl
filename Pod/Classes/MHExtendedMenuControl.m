@@ -107,6 +107,39 @@
     isMenuOpen = NO;
 }
 
+- (void)closeMenu {
+    if (delegateRespondsTo.willCloseMenu)
+        [self.delegate MHExtendedMenuControlWillCloseMenu:self];
+    
+    [UIView animateWithDuration:Animation_Duration
+                     animations:^{
+                         for (UIView *button in buttonsArray) {
+                             if ([buttonsArray indexOfObject:button] != selectedButton) {
+                                 button.layer.shadowColor = [[UIColor clearColor] CGColor];
+                                 button.alpha = 0;
+                             } else {
+                                 if (nbrOfButtons > 1) {
+                                     button.layer.shadowColor = [[UIColor blackColor] CGColor];
+                                     button.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+                                     button.layer.shadowRadius = 3.0f;
+                                     button.layer.shadowOpacity = 0.8f;
+                                 }
+                             }
+                             
+                             button.frame = ((UIView *)buttonsArray[0]).frame;
+                         }
+                         
+                     }
+                     completion:^(BOOL finished){
+                         if (delegateRespondsTo.didCloseMenu)
+                             [self.delegate MHExtendedMenuControlDidCloseMenu:self];
+                         channelScrollView.scrollEnabled = NO;
+                         
+                         isMenuOpen = NO;
+                     }
+     ];
+}
+
 #pragma mark - Private Methods
 
 - (void)configureButtons {
@@ -283,38 +316,6 @@
     }
 }
 
-- (void)closeMenu {
-    if (delegateRespondsTo.willCloseMenu)
-        [self.delegate MHExtendedMenuControlWillCloseMenu:self];
-    
-    [UIView animateWithDuration:Animation_Duration
-                     animations:^{
-                         for (UIView *button in buttonsArray) {
-                             if ([buttonsArray indexOfObject:button] != selectedButton) {
-                                 button.layer.shadowColor = [[UIColor clearColor] CGColor];
-                                 button.alpha = 0;
-                             } else {
-                                 if (nbrOfButtons > 1) {
-                                     button.layer.shadowColor = [[UIColor blackColor] CGColor];
-                                     button.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-                                     button.layer.shadowRadius = 3.0f;
-                                     button.layer.shadowOpacity = 0.8f;
-                                 }
-                             }
-                             
-                             button.frame = ((UIView *)buttonsArray[0]).frame;
-                         }
-                         
-                     }
-                     completion:^(BOOL finished){
-                         if (delegateRespondsTo.didCloseMenu)
-                             [self.delegate MHExtendedMenuControlDidCloseMenu:self];
-                         channelScrollView.scrollEnabled = NO;
-                         
-                         isMenuOpen = NO;
-                     }
-     ];
-}
 
 #pragma mark - UIGestureRecognizerDelegate
 
