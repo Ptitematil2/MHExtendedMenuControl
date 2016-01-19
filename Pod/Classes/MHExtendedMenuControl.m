@@ -233,8 +233,11 @@
                 return;
             }
         }
+        else if (didTapMenu == YES) {
+            isMenuOpen = YES;
+        }
         
-        if (isMenuOpen || didTapMenu) {
+        if (isMenuOpen) {
             didTapMenu = NO;
             if (delegateRespondsTo.willOpenMenu)
                 [self.delegate MHExtendedMenuControlWillOpenMenu:self];
