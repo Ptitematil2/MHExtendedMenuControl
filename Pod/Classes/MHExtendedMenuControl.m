@@ -25,6 +25,7 @@
     } delegateRespondsTo;
     
     BOOL isMenuOpen;
+    BOOL didTapMenu;
     NSMutableArray *buttonsArray;
     NSArray *imagesArray;
     NSInteger nbrOfButtons;
@@ -233,7 +234,8 @@
             }
         }
         
-        if (isMenuOpen) {
+        if (isMenuOpen || didTapMenu) {
+            didTapMenu = NO;
             if (delegateRespondsTo.willOpenMenu)
                 [self.delegate MHExtendedMenuControlWillOpenMenu:self];
             
@@ -384,6 +386,33 @@
                     }];
             }
         }
+    }
+}
+
+- (void)openMenuLongPress:(id)sender
+{
+    if (!isMenuOpen) {
+        if([sender isKindOfClass:[UILongPressGestureRecognizer class]])
+        {
+            UILongPressGestureRecognizer *gestureRecognizer = (UILongPressGestureRecognizer *)sender;
+            if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+                isMenuOpen = YES;
+            } else {
+                return;
+            }
+        }
+        [self openMenu:sender];
+    }
+}
+
+
+
+- (void)openMenuTap:(id)sender
+
+{
+    if (!didTapMenu) {
+        didTapMenu = YES;
+        [self openMenu:sender];
     }
 }
 

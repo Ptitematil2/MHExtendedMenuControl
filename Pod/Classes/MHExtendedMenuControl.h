@@ -41,5 +41,6 @@ typedef NS_ENUM(NSInteger, MHExtendedMenuAnimation) {
 - (void)setSelectedButton:(int)buttonIndex;
 - (void)loadMenuWith:(NSInteger)numberOfButtons buttonsWithImages:(NSArray *)images;
 - (void)closeMenu;
+- (void)openMenuTap:(id)sender;
 
 @end
